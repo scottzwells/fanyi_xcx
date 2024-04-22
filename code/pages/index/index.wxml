@@ -1,0 +1,15 @@
+<!--pages/index/index.wxml-->
+<text class='header'>轻松翻译，从现在开始</text>
+
+<view class="main_screen">
+  <text class="clear_input_box" bindtap="clearInput">清空</text>
+  <text class="copy_output_box" bindtap="test_111">复制</text>
+
+  <textarea class="input_box" placeholder="请输入文本" value="{{inputContent}}"></textarea>
+  <button >点击翻译</button>
+  <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea>
+  <button bindtap="navigateToHistory">历史</button>
+
+</view>
+
+

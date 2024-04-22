@@ -1,0 +1,58 @@
+/**靠上居中**/
+.header {
+  display: flex;
+  color: #66CCFF;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  margin-top: 8px;
+}
+
+/**输入输出**/
+.main_screen {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+/**输入**/
+.input_box {
+  display: flex;
+  margin-top: 0px;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+
+}
+
+/**输出**/
+.output_box {
+  display: flex;
+  margin-top: 20px; /* 设置输出框距离输入框的上方间距 */
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}
+
+/* 清空输入框 */
+.clear_input_box {
+  position: absolute;
+  top: 108rpx;
+  right: 32rpx;
+  color: #999; /* 设置叉号颜色 */
+  cursor: pointer;
+  z-index: 10; 
+}
+
+/** 复制输出框 **/
+.copy_output_box {
+  position: absolute;
+  top: 600rpx;
+  right: 32rpx;
+  color: #999; /* 设置颜色 */
+  cursor: pointer;
+  z-index: 10; 
+}
