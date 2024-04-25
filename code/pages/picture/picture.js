@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imageUrl: '' // 图片的本地路径
 
   },
 
@@ -62,5 +63,32 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+
+   // 选择图片
+   chooseImage: function () {
+    wx.chooseMedia ({
+      count: 1, // 只能选择一张图片
+      mediaType: "image",
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        // 选择成功后将图片路径保存到data中
+        const tempFilePath = res.tempFiles[0].tempFilePath;
+        console.log(tempFilePath)
+        this.setData({
+          imageUrl: tempFilePath
+        });
+      },
+      fail: (err) => {
+        console.log('选择图片失败', err);
+        wx.showToast({
+          title: '选择图片失败',
+          icon: 'none'
+        });
+      }
+    });
   }
+
 })

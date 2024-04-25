@@ -1,1 +1,39 @@
 /* pages/picture/picture.wxss */
+.main_screen {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 1000rpx;
+
+}
+
+.image-container {
+  width: 1000rpx;
+  height: 1000rpx;
+  margin: 50rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  /* padding: 10rpx 20rpx; */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5rpx;
+}
