@@ -1,1 +1,27 @@
 /* pages/history/history.wxss */
+.history-container {
+  padding: 20rpx;
+}
+
+.history-item {
+  display: flex; /* 使用 Flex 布局 */
+  align-items: center; /* 沿主轴居中对齐 */
+  margin-bottom: 20rpx;
+}
+
+.source {
+  font-weight: bold;
+}
+
+.arrow {
+  margin: 0 10rpx;
+}
+
+.translated {
+  color: #666;
+}
+
+.time {
+  color: #999;
+  font-size: 12rpx;
+}

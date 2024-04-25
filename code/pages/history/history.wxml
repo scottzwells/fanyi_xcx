@@ -1,4 +1,10 @@
 <!--pages/history/history.wxml-->
 <text>这是历史界面</text>
 
-
+<view class="history-container">
+  <view wx:for="{{historyList}}" wx:key="index" class="history-item">
+    <view class="source">{{item.src}}</view>
+    <view class="arrow">-></view>
+    <view class="translated">{{item.dst}}</view>
+  </view>
+</view>

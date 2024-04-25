@@ -20,7 +20,6 @@ function translate(
       success(response) {
         let data = response.data
         console.log("data:", data)
-        console.log("response.data:",response.data)
         if (data && data.trans_result) {
           resolve(data)
         } else {

@@ -10,9 +10,10 @@ Page({
   data: {
     inputContent: "",  // 输入文本
     outputContent: "这是初始文本",  // 输出结果
-    sourceLanguage: '中文', // 默认源语言为中文
-    targetLanguage: '英文', // 默认目标语言为英语
-    languages: ['中文', '英文', '日语'] // 支持的语言列表
+    sourceLanguage: 'zh', // 默认源语言为中文
+    targetLanguage: 'en', // 默认目标语言为英语
+    languages: ['zh', 'en', 'ja'] // 支持的语言列表
+    // 参考https://quickref.cn/docs/iso-639-1.html来修改语言列表
 
   },
 
@@ -82,9 +83,7 @@ Page({
     this.setData({
       inputContent: e.detail.value
     })
-    console.log(this.data.inputContent);
-    console.log(this.data.sourceLanguage);
-    console.log(this.data.targetLanguage);
+    console.log("这是在函数onInput里面的输出：输入数据是", this.data.inputContent, "  source:", this.data.sourceLanguage, "  target:", this.data.targetLanguage);
   },
 
   // 清空输入框
@@ -104,16 +103,27 @@ Page({
       return;
     };
     // 情况2：有输入，翻译
+     console.log("from: " ,this.data.sourceLanguage || 'auto',"to: ", this.data.targetLanguage)
     translate(this.data.inputContent, {
       from: this.data.sourceLanguage || 'auto',
       to: this.data.targetLanguage
     }).then(res => {
+      let dst = res.trans_result[0].dst
+      let src = res.trans_result[0].src
       this.setData({
-        outputContent: res.trans_result
+        outputContent: dst
       })
-
+      console.log(src, "->", dst)
       // 更新历史记录(todo)
-
+      let history = wx.getStorageSync('history') || []
+      history.unshift({
+        dst: dst,
+        src: src,
+        from: res.from,
+        to: res.to
+      })
+      history.length = history.length > 10 ? 10 : history.length
+      wx.setStorageSync('history', history)
     }, error => {
       console.log(error)
     })
