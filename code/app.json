@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/history/history"
+    "pages/history/history",
+    "pages/picture/picture",
+    "pages/voice/voice"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -12,5 +14,4 @@
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
-
 }

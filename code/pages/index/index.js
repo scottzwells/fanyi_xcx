@@ -1,10 +1,18 @@
 // pages/index/index.js
+
+import { translate } from '../../utils/baidu-translate-api.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    inputContent: "",  // 输入文本
+    outputContent: "这是初始文本",  // 输出结果
+    sourceLanguage: '中文', // 默认源语言为中文
+    targetLanguage: '英文', // 默认目标语言为英语
+    languages: ['中文', '英文', '日语'] // 支持的语言列表
 
   },
 
@@ -25,8 +33,13 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
+  onLoad: function (options) {
+    console.log('options inputContent', options.inputContent)
+    if (options.inputContent) {
+      this.setData({
+        inputContent: options.inputContent
+      })
+    }
   },
 
   /**
@@ -64,26 +77,53 @@ Page({
 
   },
 
-  // 导航到历史界面
-  navigateToHistory: function() {
-    wx.navigateTo({
-      url: '/pages/history/history' // 跳转到历史页面的路径
+  // 获取输入框的内容
+  onInput: function (e) {
+    this.setData({
+      inputContent: e.detail.value
     })
+    console.log(this.data.inputContent);
+    console.log(this.data.sourceLanguage);
+    console.log(this.data.targetLanguage);
   },
 
   // 清空输入框
-  clearInput: function() {
+  clearInput: function () {
     this.setData({
       inputContent: '' // 清空输入框内容
     });
   },
 
+  translate_input: function () {
+    // 情况1：没有输入，给出提示
+    console.log(this.data.inputContent);
+    if (!this.data.inputContent) {
+      this.setData({
+        outputContent: "请在输入框中输入有效的文本"
+      });
+      return;
+    };
+    // 情况2：有输入，翻译
+    translate(this.data.inputContent, {
+      from: this.data.sourceLanguage || 'auto',
+      to: this.data.targetLanguage
+    }).then(res => {
+      this.setData({
+        outputContent: res.trans_result
+      })
+
+      // 更新历史记录(todo)
+
+    }, error => {
+      console.log(error)
+    })
+  },
 
   // 复制到剪贴板
-  copyOutput: function() {
+  copyOutput: function () {
     wx.setClipboardData({
       data: this.data.outputContent, // 设置剪贴板的内容为输入框的文字
-      success: function(res) {
+      success: function (res) {
         wx.showToast({
           title: '复制成功',
           icon: 'success',
@@ -93,18 +133,77 @@ Page({
     });
   },
 
-  test_111 : function()
-  {
+
+  // 选择源语言
+  selectSourceLanguage: function (e) {
+    const index = e.detail.value;
+    const selectedLanguage = this.data.languages[index];
+    console.log(selectedLanguage);
+    this.setData({
+      sourceLanguage: selectedLanguage
+    });
+  },
+
+  // 选择目标语言
+  selectTargetLanguage: function (e) {
+    const index = e.detail.value;
+    const selectedLanguage = this.data.languages[index];
+    console.log(selectedLanguage);
+    this.setData({
+      targetLanguage: selectedLanguage
+    });
+  },
+
+
+  // 导航到图片界面
+  navigateToPicture: function () {
+    wx.navigateTo({
+      url: '/pages/picture/picture' // 跳转到图片页面的路径
+    })
+  },
+
+  // 导航到语音界面
+  navigateToVoice: function () {
+    wx.navigateTo({
+      url: '/pages/voice/voice' // 跳转到语音页面的路径
+    })
+  },
+
+
+  // 导航到历史界面
+  navigateToHistory: function () {
+    wx.navigateTo({
+      url: '/pages/history/history' // 跳转到历史页面的路径
+    })
+  },
+
+
+
+
+
+
+
+
+
+
+  test_111: function () {
     wx.setClipboardData({
       data: 'data',
-      success (res) {
+      success(res) {
         wx.getClipboardData({
-          success (res) {
+          success(res) {
             console.log(res.data) // data
           }
         })
       }
     })
+  },
+
+  test_out: function (e) {
+    this.setData({
+      outputContent: e.detail.value
+    }
+    )
   }
 
 })

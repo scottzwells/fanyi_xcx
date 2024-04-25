@@ -40,7 +40,7 @@
 /* 清空输入框 */
 .clear_input_box {
   position: absolute;
-  top: 108rpx;
+  top: 208rpx;
   right: 32rpx;
   color: #999; /* 设置叉号颜色 */
   cursor: pointer;
@@ -50,9 +50,30 @@
 /** 复制输出框 **/
 .copy_output_box {
   position: absolute;
-  top: 600rpx;
+  top: 700rpx;
   right: 32rpx;
   color: #999; /* 设置颜色 */
   cursor: pointer;
   z-index: 10; 
 }
+
+/*语言选择按钮*/
+.picker_language_selection {
+  width: 300rpx;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #ee0000; /* 添加边框 */
+  background-color: #c0fffb;
+  border-radius: 4px; /* 添加圆角 */
+  padding: 8rpx 16rpx; /* 添加内边距 */
+}
+
+/*底部三个按钮*/
+.button_row {
+  width: 700rpx;
+  display: flex;
+  justify-content: space-between; /* 或者其他水平排列方式，比如 space-around, space-evenly 等 */
+}
+
+
+
