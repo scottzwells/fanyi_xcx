@@ -10,7 +10,7 @@
 }
 
 .source {
-  font-weight: bold;
+  color: rgb(22, 22, 22);
 }
 
 .arrow {
@@ -18,7 +18,8 @@
 }
 
 .translated {
-  color: #666;
+  font-weight: bold;
+  color: #ee0000;
 }
 
 

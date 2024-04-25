@@ -8,3 +8,5 @@
     <view class="translated">{{item.dst}}</view>
   </view>
 </view>
+
+<text>这是本界面结束的地方</text>

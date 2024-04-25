@@ -18,9 +18,10 @@
 }
 
 .image-container {
-  width: 1000rpx;
+  display: flex;
+  width: 100%; /* 设置容器的宽度为100%，不然图片显示不美观 */
   height: 1000rpx;
-  margin: 50rpx;
+  margin-left: 50rpx;
   align-items: center;
   justify-content: center;
 }
