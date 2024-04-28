@@ -3,12 +3,13 @@
 
 <view class="mian_screen">
   <view class="button_row">
-    <button class="button-text-blue" style="width:300rpx" bindtap="start">开始录音</button>
+    <button class="button-text-green" style="width:300rpx" bindtap="state_change">{{state_change_text}}</button>
     <button class="button-text-red" style="width:300rpx" bindtap="stop">停止录音</button>
   </view>
   <view class="button_row">
-    <button class="button-text-green" style="width:300rpx" bindtap="state_change">{{state_change_text}}</button>
     <button class="button-text-yellow" style="width:300rpx" bindtap="play">播放录音</button>
   </view>
+  <view>当前录音时长：{{recordTime}}秒 {{tipState}}</view>
 </view>
+
 <text>这是本界面结束的地方</text>
