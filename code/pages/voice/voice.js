@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    if_voicing : true
+    if_voicing : true,
+    state_change_text : "暂停"
   },
 
   /**
@@ -49,15 +50,18 @@ Page({
       //录音暂停
       this.recorderManager.pause()
       this.if_voicing = false
-      console.log("暂停,voice状态：", this.if_voicing)
+      this.state_change_text = "继续"
+      console.log("暂停,voice状态：", this.if_voicing, "text：", this.state_change_text)
     }
     else
     {
        //继续录音
       this.recorderManager.resume()
       this.if_voicing = true
-      console.log("继续,voice状态：", this.if_voicing)
+      this.state_change_text = "暂停"
+      console.log("继续,voice状态：", this.if_voicing, "text：", this.state_change_text)
     }
+    this.setData({ state_change_text: this.state_change_text });
   },
 
   //录音停止
