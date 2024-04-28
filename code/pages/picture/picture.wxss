@@ -3,38 +3,36 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 水平居中 */
+  /* justify-content: center; 水平居中 */
   align-items: center; /* 垂直居中 */
 }
 
-
-.container {
+/*该格式会影响布局，考虑在其子区域内调整自定义格式*/
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 1000rpx;
-
-}
+  height: 1400rpx;
+} */
 
 .image-container {
   display: flex;
   width: 100%; /* 设置容器的宽度为100%，不然图片显示不美观 */
-  height: 1000rpx;
-  margin-left: 50rpx;
+  height: 350rpx;
+  /* margin-left: 50rpx; */
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
   align-items: center;
   justify-content: center;
 }
 
-.button-container {
-  width: 100%;
-  text-align: center;
-}
 
-button {
-  /* padding: 10rpx 20rpx; */
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5rpx;
+.button-text{
+  align-items: center;
+  justify-content: center;
+  background-color: #66ccff;
+  color: #ffffff;
+  border: 1mm ridge #00bbff;
+  border-radius: 10rpx;  /*边框圆角*/
 }

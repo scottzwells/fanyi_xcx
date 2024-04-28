@@ -1,13 +1,12 @@
 <!--pages/picture/picture.wxml-->
 <view class="main_screen">
   <text>这是图片OCR界面</text>
-  <view class="container">
-    <view class="button-container">
-      <button bindtap="chooseImage">选择图片</button>
-    </view>
-    <view class="image-container">
-      <image src="{{imageUrl}}" mode="aspectFit" />
-    </view>
+  <view>
+    <button class="button-text" bindtap="chooseImage" style="width:300rpx">选择图片</button>
+    <image src="{{imageUrl}}" mode="aspectFit" class="image-container"/>
+    <view>这是中间</view>
+    <button class="button-text" bindtap="" style="width:300rpx">开始翻译</button>
+    <image src="{{imageUrl}}" mode="aspectFit" class="image-container"/>
   </view>
   <text>这是本界面结束的地方</text>
 </view>

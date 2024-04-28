@@ -1,1 +1,48 @@
 /* pages/voice/voice.wxss */
+.main_screen {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+.button_row
+{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10rpx;
+}
+
+.button-text-blue{
+  font-size: 12pt;
+  align-items: center;
+  justify-content: center;
+  background-color: #66ccff;
+  color: #ffffff;
+  border-radius: 10rpx;  /*边框圆角*/
+}
+.button-text-green{
+  font-size: 12pt;
+  align-items: center;
+  justify-content: center;
+  background-color: #39c5bb;
+  color: #ffffff;
+  border-radius: 10rpx;  /*边框圆角*/
+}
+.button-text-red{
+  font-size: 12pt;
+  align-items: center;
+  justify-content: center;
+  background-color: #ee0000;
+  color: #ffffff;
+  border-radius: 10rpx;  /*边框圆角*/
+}
+.button-text-yellow{
+  font-size: 12pt;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffff66;
+  color: #000000;
+  border-radius: 10rpx;  /*边框圆角*/
+}
