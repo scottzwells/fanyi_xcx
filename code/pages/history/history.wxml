@@ -1,11 +1,15 @@
 <!--pages/history/history.wxml-->
 <text>这是历史界面</text>
+<text class="clear_history_box" bindtap="clearHistory">清空</text>
 
 <view class="history-container">
   <view wx:for="{{historyList}}" wx:key="index" class="history-item">
-    <view class="source">{{item.src}}</view>
-    <view class="arrow">-></view>
-    <view class="translated">{{item.dst}}</view>
+    <view class="one_record" >
+      <view class="source" bindtap="reloadHistory" data-item="{{item}}">{{item.src}}</view>
+      <view class="translated" bindtap="reloadHistory" data-item="{{item}}">{{item.dst}}</view>
+      <view class="delete" bindtap="deleteHistory" data-key="{{index}}" >×</view>
+    </view>
+    <view class="sep_line" width="720rpx"></view>
   </view>
 </view>
 
