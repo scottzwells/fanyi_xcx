@@ -37,7 +37,7 @@ Page({
   onLoad: function (options) {
     console.log('options inputContent:', options.inputContent)
     console.log('options outputContent:',options.outputContent)
-    if (options.inputContent&options.outputContent) {
+    if (options.inputContent&&options.outputContent) {
       this.setData({
         inputContent: options.inputContent,
         outputContent:options.outputContent
