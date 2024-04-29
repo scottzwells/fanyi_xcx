@@ -1,25 +1,45 @@
 /* pages/history/history.wxss */
+.clear_history_box{
+  color:#999; /* 清空按键 */
+  position: absolute;
+  cursor:pointer;
+  right:10rpx;
+}
+
 .history-container {
   padding: 20rpx;
 }
 
-.history-item {
+.one_record {
   display: flex; /* 使用 Flex 布局 */
-  align-items: center; /* 沿主轴居中对齐 */
+  justify-content: space-around; /* 沿主轴居中对齐 */
   margin-bottom: 20rpx;
+}
+
+.source,.translated{
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
 
 .source {
   color: rgb(22, 22, 22);
 }
 
-.arrow {
-  margin: 0 10rpx;
-}
 
 .translated {
-  font-weight: bold;
-  color: #ee0000;
+  color: #999;
 }
 
+.delete{
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.sep_line{
+  width:100%;
+  margin:20rpx 0;
+  border-bottom: 1px solid;
+}
 

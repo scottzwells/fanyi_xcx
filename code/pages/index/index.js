@@ -35,10 +35,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onLoad: function (options) {
-    console.log('options inputContent', options.inputContent)
-    if (options.inputContent) {
+    console.log('options inputContent:', options.inputContent)
+    console.log('options outputContent:',options.outputContent)
+    if (options.inputContent&&options.outputContent) {
       this.setData({
-        inputContent: options.inputContent
+        inputContent: options.inputContent,
+        outputContent:options.outputContent
       })
     }
   },
