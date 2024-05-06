@@ -3,7 +3,7 @@
   <text>这是图片OCR界面</text>
   <view>
     <button class="button-text" bindtap="chooseImage" style="width:300rpx">选择图片</button>
-    <image src="{{imageUrl}}" mode="aspectFit" class="image-container"/>
+    <image src="{{InputImageUrl}}" mode="aspectFit" class="image-container"/>
     <view>这是中间</view>
     <button class="button-text" bindtap="tranPic" style="width:300rpx">开始翻译</button>
     <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea>

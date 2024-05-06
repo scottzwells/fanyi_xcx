@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imageUrl: '', // 图片的本地路径
+    InputImageUrl: '', // 图片的本地路径
     outputContent: '输出内容' // 翻译后的文本
   },
 
@@ -79,7 +79,7 @@ Page({
         const tempFilePath = res.tempFiles[0].tempFilePath;
         console.log("图片地址:", tempFilePath)
         this.setData({
-          imageUrl: tempFilePath
+          InputImageUrl: tempFilePath
         });
       },
       fail: (err) => {
@@ -95,7 +95,7 @@ Page({
   // 翻译图片
 tranPic: function ()
 {
-  const imageUrl = this.data.imageUrl;
+  const imageUrl = this.data.InputImageUrl;
   console.log("获取的图片地址:", imageUrl)
   if (!imageUrl) {
     wx.showToast({
@@ -130,13 +130,13 @@ tranPic: function ()
           // 解析返回结果
           const result_json = res.data;
           console.log("百度API返回值:\n", result_json);
-          let text = '';
+          let origin_text = '';
           for (let words_result of result_json.words_result) {
-            text += words_result.words;
+            origin_text += words_result.words;
           }
-          console.log(text); // 输出识别到的文字
+          console.log(origin_text); // 输出识别到的文字
           this.setData(
-            {outputContent: text}
+            {outputContent: origin_text}
           )
         },
         fail: (err) => {

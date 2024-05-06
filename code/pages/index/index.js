@@ -95,48 +95,83 @@ Page({
     });
   },
 
-  translate_input: function () {
-    // 情况1：没有输入，给出提示
-    console.log(this.data.inputContent);
+  // 翻译输入框的内容
+  translate_input: function()
+  {
+    console.log("开始翻译")
+
     if (!this.data.inputContent) {
       this.setData({
-        outputContent: "请在输入框中输入有效的文本"
+        outputContent: "请输入正确的文本"
       });
-      return;
+      return ;
     };
-    // 情况2：有输入，翻译
-     console.log("from: " ,this.data.sourceLanguage || 'auto',"to: ", this.data.targetLanguage)
-    translate(this.data.inputContent, {
-      from: this.data.sourceLanguage || 'auto',
-      to: this.data.targetLanguage
-    }).then(res => {
-      let src =''
-      for(let a of res.trans_result){
-        src+= a.src+'\n'
-      }
-      let dst=''
-      for(let b of res.trans_result){
-        dst+= b.dst+'\n'
-      }
+
+    this.translate_api(this.data.inputContent).then(result => {
+      const res = result; // 要在translate_api完成后才能设置数据
+      console.log("output:将setData", res)
       this.setData({
-        outputContent: dst
-      })
-      console.log(src, "->", dst)
-      // 更新历史记录(todo)
-      let history = wx.getStorageSync('history') || []
-      history.unshift({
-        dst: dst,
-        src: src,
-        from: res.from,
-        to: res.to
-      })
-      history.length = history.length > 10 ? 10 : history.length
-      wx.setStorageSync('history', history)
-    }, error => {
-      console.log(error)
-    })
+        outputContent: res
+      });
+    });
   },
 
+  // 调用翻译API并更新历史界面
+  translate_api: function (inputText)
+  {
+    // 该函数是全局的翻译api函数
+    // 请在调用前判断是否是!inputText
+    // :param inputText: [传入]翻译的文本
+    // :param sourceLanguage: [内部]应当在每个翻译页面里实现
+    // :param targetLanguage: [内部]应当在每个翻译页面里实现
+
+  
+    console.log("在函数translate_api里: inputText是：", inputText);
+    
+      // 情况1：没有输入，给出提示
+    // if (!inputText) {
+    //   return "请在输入框中输入有效的文本";
+    // };
+
+    // 情况2：有输入，翻译
+    return new Promise((resolve, reject) => {
+    console.log("from: " ,this.data.sourceLanguage || 'auto',"to: ", this.data.targetLanguage)
+    translate(inputText, {
+      from: this.data.sourceLanguage || 'auto',
+      to: this.data.targetLanguage
+    }).then(res => 
+      {
+        let src =''  // 原文
+        for(let ori of res.trans_result){
+          src+= ori.src+'\n'
+        }
+        let dst=''  // 译文
+        for(let target of res.trans_result){
+          dst+= target.dst+'\n'
+        }
+        console.log(src, "->", dst)
+
+        // 更新历史记录
+        let history = wx.getStorageSync('history') || []
+        history.unshift({
+          dst: dst,
+          src: src,
+          from: res.from,
+          to: res.to
+        })
+        history.length = history.length > 10 ? 10 : history.length
+        wx.setStorageSync('history', history)
+
+        console.log("return的结果是：", dst);
+        resolve(dst);
+      })
+    }).catch(error => {
+      console.error("翻译失败: ", error);
+      reject("翻译失败，请稍后重试");
+  });
+},
+
+  
   // 复制到剪贴板
   copyOutput: function () {
     wx.setClipboardData({
