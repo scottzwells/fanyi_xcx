@@ -1,8 +1,14 @@
 /* pages/history/history.wxss */
+.history_title{
+  color:#66CCFF;
+  margin:10rpx;
+}
+
 .clear_history_box{
-  color:#999; /* 清空按键 */
+  width:50rpx; /* 清空按键 */
   position: absolute;
   cursor:pointer;
+  top:0px;
   right:10rpx;
 }
 
@@ -18,18 +24,19 @@
 
 .source,.translated{
   width:100%;
+  max-height:150rpx; 
   overflow:hidden;
-  white-space:nowrap;
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis;
+  white-space:nowrap;*/
 }
 
 .source {
-  color: rgb(22, 22, 22);
+  color: rgb(219, 106, 40);
 }
 
 
 .translated {
-  color: #999;
+  color: #000000;
 }
 
 .delete{
@@ -40,6 +47,7 @@
 .sep_line{
   width:100%;
   margin:20rpx 0;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid rgb(200,200,200);
+
 }
 

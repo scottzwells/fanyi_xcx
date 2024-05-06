@@ -1,6 +1,6 @@
 <!--pages/history/history.wxml-->
-<text>这是历史界面</text>
-<text class="clear_history_box" bindtap="clearHistory">清空</text>
+<text class="history_title">翻译历史</text>
+<image src="../../img/clear.png" mode="widthFix" class="clear_history_box" bindtap="clearHistory">清空</image>
 
 <view class="history-container">
   <view wx:for="{{historyList}}" wx:key="index" class="history-item">
@@ -13,4 +13,3 @@
   </view>
 </view>
 
-<text>这是本界面结束的地方</text>

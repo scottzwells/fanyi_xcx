@@ -1,11 +1,7 @@
 <!--pages/index/index.wxml-->
 <text class='header'>轻松翻译，从现在开始</text>
 
-
 <view class="main_screen">
-  <text class="clear_input_box" bindtap="clearInput">清空</text>
-  <text class="copy_output_box" bindtap="copyOutput">复制</text>
-
   <view class="picker_language_selection">
     <picker mode="selector" range="{{languages}}" bindchange="selectSourceLanguage">
       <view class="picker">
@@ -19,6 +15,9 @@
       </view>
     </picker>
   </view>
+
+  <image src="../../img/clear.png" mode="widthFix" class="clear_input_box" bindtap="clearInput"></image>
+  <image src="../../img/copy.png" mode="widthFix" class="copy_output_box" bindtap="copyOutput"></image>
 
   <textarea class="input_box" placeholder="请输入文本" value="{{inputContent}}" bindinput="onInput"></textarea>
 

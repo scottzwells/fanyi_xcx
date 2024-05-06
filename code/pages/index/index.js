@@ -110,8 +110,14 @@ Page({
       from: this.data.sourceLanguage || 'auto',
       to: this.data.targetLanguage
     }).then(res => {
-      let dst = res.trans_result[0].dst
-      let src = res.trans_result[0].src
+      let src =''
+      for(let a of res.trans_result){
+        src+= a.src+'\n'
+      }
+      let dst=''
+      for(let b of res.trans_result){
+        dst+= b.dst+'\n'
+      }
       this.setData({
         outputContent: dst
       })
