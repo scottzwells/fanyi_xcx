@@ -36,3 +36,13 @@
   border: 1mm ridge #00bbff;
   border-radius: 10rpx;  /*边框圆角*/
 }
+
+
+/**输出**/
+.output_box {
+  display: flex;
+  margin-top: 20px; /* 设置输出框距离输入框的上方间距 */
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+}

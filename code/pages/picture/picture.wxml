@@ -5,8 +5,52 @@
     <button class="button-text" bindtap="chooseImage" style="width:300rpx">选择图片</button>
     <image src="{{imageUrl}}" mode="aspectFit" class="image-container"/>
     <view>这是中间</view>
-    <button class="button-text" bindtap="" style="width:300rpx">开始翻译</button>
-    <image src="{{imageUrl}}" mode="aspectFit" class="image-container"/>
+    <button class="button-text" bindtap="tranPic" style="width:300rpx">开始翻译</button>
+    <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea>
   </view>
   <text>这是本界面结束的地方</text>
 </view>
+
+<!--
+OCR API：
+AppID: 67532418
+API Key: mxVdolDqrgzx415HCZolpm1v
+Secret Key: ZypQIWoLurdvgpuKI2aMgPRrnTeQnWX5
+AES Key: 63c82d026ad0f70e
+access_token: 24.94deb7dc47383932cd1c247353d0f73a.2592000.1717586926.282335-67532418
+
+OCR接口调用(POST)：
+https://aip.baidubce.com/rest/2.0/ocr/v1/general?access_token=***
+
+
+
+
+access_token有效期是30天，通过以下方式调用：
+# 文档https://ai.baidu.com/ai-doc/REFERENCE/Ck3dwjhhu
+import requests
+def main():
+    api_key = "mxVdolDqrgzx415HCZolpm1v"
+    secret_key = "ZypQIWoLurdvgpuKI2aMgPRrnTeQnWX5"
+    url = f"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={api_key}&client_secret={secret_key}"
+    payload = ""
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    print(response.text)
+if __name__ == '__main__':
+    main()  # "access_token":"24.94deb7dc47383932cd1c247353d0f73a.2592000.1717586926.282335-67532418"
+
+API调用方式：
+    OCR_URL = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
+    image_url = OCR_URL + "?access_token=" + token
+    # 调用文字识别服务
+    result = request(image_url, urlencode({'image': base64.b64encode(file_content)}))
+    # 解析返回结果
+    result_json = json.loads(result)
+    for words_result in result_json["words_result"]:
+        text = text + words_result["words"]
+    print(text)
+
+-->
