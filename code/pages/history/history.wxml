@@ -1,5 +1,5 @@
 <!--pages/history/history.wxml-->
-<text>这是历史界面</text>
+<text class="history_title">翻译历史</text>
 <text class="clear_history_box" bindtap="clearHistory">清空</text>
 
 <view class="history-container">
@@ -13,4 +13,3 @@
   </view>
 </view>
 
-<text>这是本界面结束的地方</text>

@@ -1,4 +1,9 @@
 /* pages/history/history.wxss */
+.history_title{
+  color:#66CCFF;
+  margin:10rpx;
+}
+
 .clear_history_box{
   color:#999; /* 清空按键 */
   position: absolute;
