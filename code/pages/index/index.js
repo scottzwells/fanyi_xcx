@@ -12,7 +12,10 @@ Page({
     outputContent: "这是初始文本",  // 输出结果
     sourceLanguage: 'zh', // 默认源语言为中文
     targetLanguage: 'en', // 默认目标语言为英语
-    languages: ['zh', 'en', 'ja'] // 支持的语言列表
+    sourceLanguage_show: '中文', // 显示的源语言
+    targetLanguage_show: '英语', // 显示的目标语言
+    languages: ['zh', 'en', 'ja'], // 支持的语言列表
+    languages_show: ['中文', '英语', '日语']  // 显示语言列表
     // 参考https://quickref.cn/docs/iso-639-1.html来修改语言列表
 
   },
@@ -128,7 +131,8 @@ Page({
   
     console.log("在函数translate_api里: inputText是：", inputText);
     
-      // 情况1：没有输入，给出提示
+    // 情况1：没有输入，给出提示
+    // 注：该功能要求在外部实现。
     // if (!inputText) {
     //   return "请在输入框中输入有效的文本";
     // };
@@ -190,20 +194,26 @@ Page({
   // 选择源语言
   selectSourceLanguage: function (e) {
     const index = e.detail.value;
+    console.log(index);
     const selectedLanguage = this.data.languages[index];
+    const selectedLanguage_show = this.data.languages_show[index];
     console.log(selectedLanguage);
     this.setData({
-      sourceLanguage: selectedLanguage
+      sourceLanguage: selectedLanguage,
+      sourceLanguage_show: selectedLanguage_show
     });
   },
 
   // 选择目标语言
   selectTargetLanguage: function (e) {
     const index = e.detail.value;
+    console.log(index);
     const selectedLanguage = this.data.languages[index];
+    const selectedLanguage_show = this.data.languages_show[index];
     console.log(selectedLanguage);
     this.setData({
-      targetLanguage: selectedLanguage
+      targetLanguage: selectedLanguage,
+      targetLanguage_show: selectedLanguage_show
     });
   },
 
