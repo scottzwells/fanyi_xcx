@@ -6,7 +6,9 @@
     <image src="{{InputImageUrl}}" mode="aspectFit" class="image-container"/>
     <view>这是中间</view>
     <button class="button-text" bindtap="tranPic" style="width:300rpx">开始翻译</button>
-    <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea>
+    <!-- <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea> -->
+    <!-- <image src="{{OutputImageUrl}}" mode="aspectFit" class="image-container"/> -->
+    <canvas canvas-id="canvasId"></canvas>
   </view>
   <text>这是本界面结束的地方</text>
 </view>

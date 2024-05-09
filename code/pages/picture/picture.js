@@ -1,4 +1,7 @@
 // pages/picture/picture.js
+
+import {translate_api} from '../index/index.js'
+
 Page({
 
   /**
@@ -106,14 +109,31 @@ tranPic: function ()
   }
 
   // 获取接口地址
-  const OCR_URL = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
+  // const OCR_URL = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
+  const OCR_URL = "https://aip.baidubce.com/rest/2.0/ocr/v1/general";
   const token = "24.94deb7dc47383932cd1c247353d0f73a.2592000.1717586926.282335-67532418"; // 百度接口访问令牌
+  let pic_width = 300
+  let pic_height = 200
+
+  // 获取图片信息
+  wx.getImageInfo({
+    src: imageUrl,
+    success (res) {
+      console.log(res.width)
+      console.log(res.height)
+      pic_width = res.width
+      pic_height = res.height
+    }
+  })
+
 
   // 将图片转换成 Base64 格式
   wx.getFileSystemManager().readFile({
     filePath: imageUrl,
     encoding: 'base64',
     success: (res) => {
+
+
       const file_content = res.data;
       console.log("转化成功\n")
       // 发起网络请求
@@ -127,29 +147,95 @@ tranPic: function ()
           image: file_content
         },
         success: (res) => {
+          let translatedTexts = []; // 用于存储翻译后的文本
+          let positions = []; // 用于存储每个文字的位置信息
           // 解析返回结果
           const result_json = res.data;
           console.log("百度API返回值:\n", result_json);
           let origin_text = '';
-          for (let words_result of result_json.words_result) {
+          for (let words_result of result_json.words_result)
+          {
             origin_text += words_result.words;
+            console.log(words_result.words, '^^^', origin_text)
+            // 调用翻译函数，将原始文本翻译为目标语言
+            let tran_text = translate_api(words_result.words, 'zh', 'en');
+            console.log(tran_text)
+            translatedTexts.push(tran_text);
+            // 记录文本的位置信息
+            let position = {
+                top: words_result.location.top,
+                left: words_result.location.left
+            };
+            positions.push(position);
           }
-          console.log(origin_text); // 输出识别到的文字
-          this.setData(
-            {outputContent: origin_text}
-          )
+          
+          console.log("-----------------")
+          console.log(translatedTexts)
+          console.log(positions)
+
+          // 创建一个空数组来存储每个Promise的结果
+          let results = [];
+          // 使用Promise.all等待所有Promise完成
+          Promise.all(translatedTexts).then((results) =>
+          {
+            console.log("^^^^^^^^^^^^^^^^^^^^^");
+            console.log("Results:", results); // 输出所有Promise的结果
+            
+            console.log(pic_width, pic_height)
+
+            // 获取 canvas 上下文
+            const ctx = wx.createCanvasContext('canvasId');
+            // 绘制原始图片
+            // ctx.drawImage(imageUrl, 0, 0, pic_width, pic_height); // 绘制原始图片
+            ctx.drawImage(imageUrl, 0, 0, 250, 150); // 绘制原始图片
+            // 设置字体颜色为红色
+            ctx.setFillStyle('red');
+            // 绘制翻译后的文本
+            for (let i = 0; i < results.length; i++) {
+              let tran_text = results[i];
+              let position = positions[i];
+              console.log("--", i, tran_text, position.left, position.top)
+              ctx.fillText(tran_text, position.left, position.top);
+            }
+            // 绘制到 canvas 上
+            ctx.draw();
+            // ctx.draw(false, () => {
+            //   wx.canvasToTempFilePath({
+            //     canvasId: 'canvasId',
+            //     success: function (res) {
+            //       // res.tempFilePath 包含生成的图片文件路径
+            //       console.log("翻译后的图片的地址", res.tempFilePath);
+            //     }
+            //   });
+            // });
+
+
+            console.log(origin_text); // 输出识别到的文字
+            this.setData(
+              {outputContent: origin_text}
+            )
+
+          }).catch((error) => {
+            console.error("Error:", error);
+          });
+
+
+          
         },
         fail: (err) => {
-          console.error('调用文字识别接口失败', err);
+          console.error('调用OCR接口失败', err);
           this.setData(
-            {outputContent: "调用文字识别接口失败", err}
+            {outputContent: "调用OCR接口失败", err}
           )
         }
       });
     },
+
     fail: (err) => {
       console.error('读取图片失败', err);
     }
+
+
   });
 }
 
