@@ -25,7 +25,8 @@
   padding: 36rpx;
   box-sizing: border-box;
   border: 1px solid #ccc;
-
+  width:720rpx;
+  height:300rpx;
 }
 
 /**输出**/
@@ -35,6 +36,8 @@
   padding: 40rpx;
   box-sizing: border-box;
   border: 1px solid #ccc;
+  width:720rpx;
+  height:300rpx;
 }
 
 /* 清空输入框 */
@@ -42,7 +45,7 @@
   position: absolute;
   width:50rpx;
   top: 180rpx;
-  right: 32rpx;
+  right: 20rpx;
   cursor: pointer;
   z-index: 10; 
 }
@@ -51,8 +54,8 @@
 .copy_output_box {
   position: absolute;
   width:50rpx;
-  top: 670rpx;
-  right: 32rpx;
+  top: 620rpx;
+  right: 20rpx;
   color: #999; /* 设置颜色 */
   cursor: pointer;
   z-index: 10; 
@@ -61,17 +64,24 @@
 /*语言选择按钮*/
 .picker_language_selection {
   width: 300rpx;
+  height:50rpx;
   display: flex;
   justify-content: space-between;
   border: 2px solid #ee0000; /* 添加边框 */
   background-color: #c0fffb;
   border-radius: 4px; /* 添加圆角 */
   padding: 8rpx 16rpx; /* 添加内边距 */
+  margin: 10rpx;
+}
+
+.translate_box{
+  height:100rpx;
 }
 
 /*底部三个按钮*/
 .button_row {
   width: 700rpx;
+  height:100rpx;
   display: flex;
   justify-content: space-between; /* 或者其他水平排列方式，比如 space-around, space-evenly 等 */
 }

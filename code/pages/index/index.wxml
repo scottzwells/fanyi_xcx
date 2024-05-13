@@ -21,7 +21,7 @@
 
   <textarea class="input_box" placeholder="请输入文本" value="{{inputContent}}" bindinput="onInput"></textarea>
 
-  <button bindtap="translate_input">点击翻译</button>
+  <button class="translate_box" bindtap="translate_input">点击翻译</button>
 
   <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea>
   
