@@ -1,6 +1,6 @@
 /* pages/picture/picture.wxss */
 .main_screen {
-  margin-top: 10px;
+  margin-top: 10rpx;
   display: flex;
   flex-direction: column;
   /* justify-content: center; 水平居中 */
@@ -41,8 +41,8 @@
 /**输出**/
 .output_box {
   display: flex;
-  margin-top: 20px; /* 设置输出框距离输入框的上方间距 */
-  padding: 15px;
+  margin-top: 20rpx; /* 设置输出框距离输入框的上方间距 */
+  padding: 15rpx;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }

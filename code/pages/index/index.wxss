@@ -1,8 +1,9 @@
 /**靠上居中**/
 .header {
   display: flex;
-  color: #66CCFF;
+  color: #ee0000;
   font-size: 36rpx;
+  font-weight: bold;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
@@ -21,21 +22,28 @@
 /**输入**/
 .input_box {
   display: flex;
-  margin-top: 0px;
+  margin-top: 15rpx;
+  margin-bottom: 10rpx;
+  /* margin-left: 10rpx;
+  margin-right: 10rpx; */
   padding: 36rpx;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   width:720rpx;
   height:300rpx;
+
 }
 
 /**输出**/
 .output_box {
   display: flex;
-  margin-top: 20px; /* 设置输出框距离输入框的上方间距 */
-  padding: 40rpx;
+  margin-top: 15rpx;
+  margin-bottom: 10rpx;
+  /* margin-left: 10rpx;
+  margin-right: 10rpx; */
+  padding: 36rpx;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   width:720rpx;
   height:300rpx;
 }
@@ -44,7 +52,7 @@
 .clear_input_box {
   position: absolute;
   width:50rpx;
-  top: 180rpx;
+  top: 192rpx;
   right: 20rpx;
   cursor: pointer;
   z-index: 10; 
@@ -54,10 +62,19 @@
 .copy_output_box {
   position: absolute;
   width:50rpx;
-  top: 620rpx;
+  top: 625rpx;
   right: 20rpx;
   color: #999; /* 设置颜色 */
   cursor: pointer;
+  z-index: 10; 
+}
+
+/** 文本的箭头 **/
+.arrow_png {
+  position: absolute;
+  width:100rpx;
+  top: 115rpx;
+  right: 324rpx;
   z-index: 10; 
 }
 
@@ -65,20 +82,30 @@
 .picker_language_selection {
   width: 300rpx;
   height:50rpx;
+  font-weight: bold;
   display: flex;
+  align-items: center; /* 垂直居中 */
   justify-content: space-between;
-  border: 2px solid #ee0000; /* 添加边框 */
-  background-color: #c0fffb;
+  border: 3px solid #ddb68f; /* 添加边框 */
+  background-color: #f6f9fd;
   border-radius: 4px; /* 添加圆角 */
   padding: 8rpx 16rpx; /* 添加内边距 */
   margin: 10rpx;
 }
 
+/*点击翻译*/
 .translate_box{
   height:100rpx;
+  width: 20%;
+  background-color: #fcffe7;
+  border: 4px ridge #66ccff;
+  border-radius: 10px; /* 添加圆角 */
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
 }
 
-/*底部三个按钮*/
+/*底部三个按钮(整体)*/
 .button_row {
   width: 700rpx;
   height:100rpx;
@@ -86,5 +113,14 @@
   justify-content: space-between; /* 或者其他水平排列方式，比如 space-around, space-evenly 等 */
 }
 
+/*底部三个按钮*/
+.button_t{
+  display: flex;
+  border-radius: 50px; /* 添加圆角 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  background-color: #bef5d1;
+  margin-right: 30rpx; /* 添加右侧外边距，为了相互隔离 */
+}
 
 

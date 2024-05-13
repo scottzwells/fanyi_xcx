@@ -67,14 +67,14 @@ Page({
    */
   data: {
     inputContent: "",  // 输入文本
-    outputContent: "这是初始文本",  // 输出结果
+    outputContent: "",  // 输出结果
     sourceLanguage: 'zh', // 默认源语言为中文
     targetLanguage: 'en', // 默认目标语言为英语
     sourceLanguage_show: '中文', // 显示的源语言
     targetLanguage_show: '英语', // 显示的目标语言
-    languages: ['zh', 'en', 'ja'], // 支持的语言列表
-    languages_show: ['中文', '英语', '日语']  // 显示语言列表
-    // 参考https://quickref.cn/docs/iso-639-1.html来修改语言列表
+    languages: ['zh', 'en', 'ja', 'fr', 'ru', 'it'], // 支持的语言列表
+    languages_show: ['中文', '英语', '日语', '法语', '俄语', '意大利']  // 显示语言列表
+    // 参考 https://quickref.cn/docs/iso-639-1.html 来修改语言列表，需要注意languages与languages_show的对应顺序
 
   },
 

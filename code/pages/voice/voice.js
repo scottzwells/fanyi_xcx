@@ -10,7 +10,8 @@ Page({
     if_voicing : 1,  // 1.就绪 2.正在录音 3.正在暂停
     state_change_text : "开始录音",  // 当if_voicing=1,2,3依次显示"开始录音","暂停","继续"
     recordTime: 0,  // 用于存储录音时间，单位：秒
-    tipState : "录音未开始"  // 给用户提供的提示信息，会显示在屏幕上
+    tipState : "录音未开始",  // 给用户提供的提示信息，会显示在屏幕上
+    InputVoiceUrl: "None" // 录音地址
   },
 
   /**
@@ -23,9 +24,9 @@ Page({
     this.recorderManager = wx.getRecorderManager()
     this.recorderManager.onStop((res) => {
       this.setData({
-        tempFilePath: res.tempFilePath // 文件临时路径
+        InputVoiceUrl: res.tempFilePath // 文件临时路径
       })
-      console.log('获取到文件：' + this.data.tempFilePath)
+      console.log('获取到文件：' + this.data.InputVoiceUrl)
     })
     this.recorderManager.onError((res) => {
       console.log('录音失败了！Error是', res)
@@ -97,7 +98,7 @@ state_change: function () {
     // 是否自动播放
     innerAudioContext.autoplay = true
     // 设置音频文件的路径
-    innerAudioContext.src = this.data.tempFilePath;
+    innerAudioContext.src = this.data.InputVoiceUrl;
     // 播放音频文件
     innerAudioContext.onPlay(() => {
       console.log('开始播放')
