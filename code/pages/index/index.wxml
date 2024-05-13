@@ -3,15 +3,15 @@
 
 <view class="main_screen">
   <view class="picker_language_selection">
-    <picker mode="selector" range="{{languages_show}}" bindchange="selectSourceLanguage">
+    <picker mode="selector" range="{{languages}}" bindchange="selectSourceLanguage">
       <view class="picker">
-        {{sourceLanguage_show}}
+        {{sourceLanguage}}
       </view>
     </picker>
     <view> ---> </view>
-    <picker mode="selector" range="{{languages_show}}" bindchange="selectTargetLanguage">
+    <picker mode="selector" range="{{languages}}" bindchange="selectTargetLanguage">
       <view class="picker">
-        {{targetLanguage_show}}
+        {{targetLanguage}}
       </view>
     </picker>
   </view>
@@ -21,7 +21,7 @@
 
   <textarea class="input_box" placeholder="请输入文本" value="{{inputContent}}" bindinput="onInput"></textarea>
 
-  <button bindtap="translate_input">点击翻译</button>
+  <button class="translate_box" bindtap="translate_input">点击翻译</button>
 
   <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容"></textarea>
   
