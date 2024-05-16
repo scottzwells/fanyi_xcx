@@ -1,7 +1,23 @@
 <!--pages/voice/voice.wxml-->
-<text>这是语言识别界面</text>
+<view class="main_screen">
+  <view class="picker_container">
+    <view class="picker_language_selection">
+      <picker mode="selector" range="{{s_languages_show}}" bindchange="selectSourceLanguage">
+        <view class="picker">
+          {{sourceLanguage_show}}
+        </view>
+      </picker>
 
-<view class="mian_screen">
+      <picker mode="selector" range="{{t_languages_show}}" bindchange="selectTargetLanguage">
+        <view class="picker">
+          {{targetLanguage_show}}
+        </view>
+      </picker>
+    </view>
+    <image src="../../img/Arrow.png" mode="widthFix" class="arrow_png"></image>
+  </view>
+
+
   <view class="button_row">
     <button class="button-text-green" style="width:300rpx" bindtap="state_change">{{state_change_text}}</button>
     <button class="button-text-red" style="width:300rpx" bindtap="stop">停止录音</button>
@@ -10,6 +26,16 @@
     <button class="button-text-yellow" style="width:300rpx" bindtap="play">播放录音</button>
   </view>
   <view>当前录音时长：{{recordTime}}秒 {{tipState}}</view>
-</view>
 
-<text>这是本界面结束的地方</text>
+  <view class="input_container">
+      <textarea class="input_box" placeholder="语音文本" value="{{ inputContent }}" maxlength="-1" bindinput="onInput"></textarea>
+      <image src="../../img/clear.png" mode="widthFix" class="clear_input_box" bindtap="clearInput"></image>
+  </view>
+  <view>
+    <button class="translate_box" bindtap="tranVoice">点击翻译</button>
+  </view>
+  <view class="output_container">
+    <textarea class="output_box" placeholder="翻译内容"  value="{{ outputContent }}" maxlength="-1"> </textarea>
+    <image src="../../img/copy.png" mode="widthFix" class="copy_output_box" bindtap="copyOutput"></image>
+  </view>
+</view>

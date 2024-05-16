@@ -1,6 +1,5 @@
 /* pages/voice/voice.wxss */
 .main_screen {
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
   /* justify-content: center; 水平居中 */
@@ -45,4 +44,9 @@
   background-color: #ffff66;
   color: #000000;
   border-radius: 10rpx;  /*边框圆角*/
+}
+
+.translate_box{
+  background-color: #66ccff;
+  color: #ffffff;
 }
