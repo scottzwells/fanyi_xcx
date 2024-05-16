@@ -62,20 +62,19 @@
   border-radius: 10rpx;  /*边框圆角*/
 }
 
-.button-re-trans{
-  align-items: center;
-  justify-content: center;
-  background-color: #66ccff;
-  color: #ffffff;
-  border: 1mm ridge #00bbff;
-  border-radius: 10rpx;  /*边框圆角*/
+/*提示词*/
+.tip_text{
+  margin-left: 50rpx;
+  margin-top: 20rpx;
+  font-weight: bold;
+  color: #ee0000;
 }
 
 /**输入**/
 .input_box {
   display: flex;
   margin-top: 15rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 30rpx;
   /* margin-left: 10rpx;
   margin-right: 10rpx; */
   padding: 36rpx;
@@ -88,8 +87,10 @@
 /**输出**/
 .output_box {
   display: flex;
-  margin-top: 20rpx; /* 设置输出框距离输入框的上方间距 */
+  margin-top: 15rpx; /* 设置输出框距离输入框的上方间距 */
   padding: 15rpx;
   box-sizing: border-box;
   border: 2px solid #ccc;
+  width:720rpx;
+  height:300rpx;
 }

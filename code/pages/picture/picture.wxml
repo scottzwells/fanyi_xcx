@@ -22,15 +22,15 @@
     <button class="button-text" bindtap="chooseImage" style="width:300rpx">选择图片</button>
     <image src="{{InputImageUrl}}" mode="aspectFit" class="image-container"/>
 
-    <view>图片识别结果：</view>
-    <textarea class="input_box" placeholder="当点击“开始翻译”之后，这里会显示源语言的文本，你可以对其进行修改" value="{{inputContent}}" bindinput="onInput" maxlength="-1"></textarea>
+    <view class="tip_text">图片识别结果：</view>
+    <textarea class="input_box" placeholder="当点击“图片翻译”之后，这里会显示源语言的文本；如果不满意，你可以对其进行修改在，然后点击“重新翻译”" value="{{inputContent}}" bindinput="onInput" maxlength="-1"></textarea>
 
     <div style="display: flex; justify-content: space-between;">
       <button class="button-text" bindtap="tranPic" style="width:300rpx">图片翻译</button>
-      <button class="button-re-trans" bindtap="tranText" style="width:300rpx">重新翻译</button>
+      <button class="button-text" bindtap="tranText" style="width:300rpx">重新翻译</button>
     </div>
 
-    <view>翻译结果：</view>
+    <view class="tip_text">翻译结果：</view>
     <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容" maxlength="-1"></textarea>
 
     <!-- <image src="{{OutputImageUrl}}" mode="aspectFit" class="image-container"/> -->
@@ -38,7 +38,6 @@
   </view>
 
 
-  <text>这是本界面结束的地方</text>
 </view>
 
 <!--
