@@ -9,7 +9,16 @@ Page({
    */
   data: {
     InputImageUrl: '', // 图片的本地路径
-    outputContent: '输出内容' // 翻译后的文本
+    inputContent: '',  // 翻译前的文本
+    outputContent: '', // 翻译后的文本
+    sourceLanguage: 'auto', // 默认源语言为自动
+    targetLanguage: 'en', // 默认目标语言为英语
+    sourceLanguage_show: '自动', // 显示的源语言
+    targetLanguage_show: '英语', // 显示的目标语言
+    source_languages: ['auto', 'zh', 'en', 'jp', 'fra', 'ru', 'it'], // 支持的语言列表
+    source_languages_show: ['自动', '中文', '英语', '日语', '法语', '俄语', '意大利'],  // 显示语言列表
+    target_languages: ['zh', 'en', 'jp', 'fra', 'ru', 'it'], // 支持的语言列表
+    target_languages_show: ['中文', '英语', '日语', '法语', '俄语', '意大利']  // 显示语言列表
   },
 
   /**
@@ -17,6 +26,19 @@ Page({
    */
   onLoad(options) {
 
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log('options inputContent:', options.inputContent)
+    console.log('options outputContent:',options.outputContent)
+    if (options.inputContent&&options.outputContent) {
+      this.setData({
+        inputContent: options.inputContent,
+        outputContent:options.outputContent
+      })
+    }
   },
 
   /**
@@ -68,6 +90,31 @@ Page({
 
   },
 
+// 选择源语言
+selectSourceLanguage: function (e) {
+  const index = e.detail.value;
+  console.log(index);
+  const selectedLanguage = this.data.source_languages[index];
+  const selectedLanguage_show = this.data.source_languages_show[index];
+  console.log(selectedLanguage);
+  this.setData({
+    sourceLanguage: selectedLanguage,
+    sourceLanguage_show: selectedLanguage_show
+  });
+},
+
+// 选择目标语言
+selectTargetLanguage: function (e) {
+  const index = e.detail.value;
+  console.log(index);
+  const selectedLanguage = this.data.target_languages[index];
+  const selectedLanguage_show = this.data.target_languages_show[index];
+  console.log(selectedLanguage);
+  this.setData({
+    targetLanguage: selectedLanguage,
+    targetLanguage_show: selectedLanguage_show
+  });
+},
 
    // 选择图片
    chooseImage: function ()
@@ -99,6 +146,8 @@ Page({
 tranPic: function ()
 {
   const imageUrl = this.data.InputImageUrl;
+  const sourceLanguage = this.data.sourceLanguage;
+  const targetLanguage = this.data.targetLanguage
   console.log("获取的图片地址:", imageUrl)
   if (!imageUrl) {
     wx.showToast({
@@ -144,7 +193,7 @@ tranPic: function ()
           }
           origin_text = origin_text.trim();  // 去掉最后一个换行符
           // 调用翻译函数，将原始文本翻译为目标语言
-          let tran_text = translate_api(origin_text, 'zh', 'en');
+          let tran_text = translate_api(origin_text, sourceLanguage, targetLanguage);
           console.log("tran_text:", tran_text)
           // // 创建一个空数组来存储每个Promise的结果
           // let results = [];
@@ -156,7 +205,10 @@ tranPic: function ()
             console.log(origin_text); // 输出识别到的文字
             
             this.setData(
-              {outputContent: results}
+              {
+                inputContent: origin_text,
+                outputContent: results
+              }
             )
 
           }).catch((error) => {
@@ -181,6 +233,35 @@ tranPic: function ()
 
 
   });
-}
+},
+
+
+  // 获取输入框的内容
+  onInput: function (e) {
+    this.setData({
+      inputContent: e.detail.value
+    })
+    console.log("这是在函数onInput里面的输出：输入数据是", this.data.inputContent, "  source:", this.data.sourceLanguage, "  target:", this.data.targetLanguage);
+  },
+
+tranText: function()
+{
+    console.log("开始翻译")
+
+    if (!this.data.inputContent) {
+      this.setData({
+        outputContent: "请输入正确的文本"
+      });
+      return ;
+    };
+
+    translate_api(this.data.inputContent, this.data.sourceLanguage, this.data.targetLanguage).then(result => {
+      const res = result; // 要在translate_api完成后才能设置数据
+      console.log("output:将setData", res)
+      this.setData({
+        outputContent: res
+      });
+    });
+  },
 
 })

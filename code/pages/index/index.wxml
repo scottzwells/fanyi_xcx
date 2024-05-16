@@ -3,13 +3,13 @@
 
 <view class="main_screen">
   <view class="picker_language_selection">
-    <picker mode="selector" range="{{languages_show}}" bindchange="selectSourceLanguage">
+    <picker mode="selector" range="{{source_languages_show}}" bindchange="selectSourceLanguage">
       <view class="picker">
         {{sourceLanguage_show}}
       </view>
     </picker>
 
-    <picker mode="selector" range="{{languages_show}}" bindchange="selectTargetLanguage">
+    <picker mode="selector" range="{{target_languages_show}}" bindchange="selectTargetLanguage">
       <view class="picker">
         {{targetLanguage_show}}
       </view>

@@ -9,8 +9,8 @@ function translate_api (inputText, sourceLanguage, targetLanguage)
     // 该函数是全局的翻译api函数
     // 请在调用前判断是否是!inputText
     // :param inputText: [传入]翻译的文本
-    // :param sourceLanguage: [内部]应当在每个翻译页面里实现
-    // :param targetLanguage: [内部]应当在每个翻译页面里实现
+    // :param sourceLanguage: [传入]原语言，可选'auto'
+    // :param targetLanguage: [传入]目标语言
 
   
     console.log("在函数translate_api里: inputText是：", inputText);
@@ -23,7 +23,7 @@ function translate_api (inputText, sourceLanguage, targetLanguage)
 
     // 情况2：有输入，翻译
     return new Promise((resolve, reject) => {
-    console.log("from: " ,sourceLanguage || 'auto',"to: ", targetLanguage)
+    console.log("from: " ,sourceLanguage, "to: ", targetLanguage)
     translate(inputText, {
       from: sourceLanguage || 'auto',
       to: targetLanguage
@@ -68,14 +68,15 @@ Page({
   data: {
     inputContent: "",  // 输入文本
     outputContent: "",  // 输出结果
-    sourceLanguage: 'zh', // 默认源语言为中文
+    sourceLanguage: 'auto', // 默认源语言为自动
     targetLanguage: 'en', // 默认目标语言为英语
-    sourceLanguage_show: '中文', // 显示的源语言
+    sourceLanguage_show: '自动', // 显示的源语言
     targetLanguage_show: '英语', // 显示的目标语言
-    languages: ['zh', 'en', 'ja', 'fr', 'ru', 'it'], // 支持的语言列表
-    languages_show: ['中文', '英语', '日语', '法语', '俄语', '意大利']  // 显示语言列表
-    // 参考 https://quickref.cn/docs/iso-639-1.html 来修改语言列表，需要注意languages与languages_show的对应顺序
-
+    source_languages: ['auto', 'zh', 'en', 'jp', 'fra', 'ru', 'it'], // 支持的语言列表
+    source_languages_show: ['自动', '中文', '英语', '日语', '法语', '俄语', '意大利'],  // 显示语言列表
+    target_languages: ['zh', 'en', 'jp', 'fra', 'ru', 'it'], // 支持的语言列表
+    target_languages_show: ['中文', '英语', '日语', '法语', '俄语', '意大利']  // 显示语言列表
+    // 参考 https://api.fanyi.baidu.com/doc/21 来修改语言列表，需要注意languages与languages_show的对应顺序
   },
 
   /**
@@ -197,8 +198,8 @@ Page({
   selectSourceLanguage: function (e) {
     const index = e.detail.value;
     console.log(index);
-    const selectedLanguage = this.data.languages[index];
-    const selectedLanguage_show = this.data.languages_show[index];
+    const selectedLanguage = this.data.source_languages[index];
+    const selectedLanguage_show = this.data.source_languages_show[index];
     console.log(selectedLanguage);
     this.setData({
       sourceLanguage: selectedLanguage,
@@ -210,8 +211,8 @@ Page({
   selectTargetLanguage: function (e) {
     const index = e.detail.value;
     console.log(index);
-    const selectedLanguage = this.data.languages[index];
-    const selectedLanguage_show = this.data.languages_show[index];
+    const selectedLanguage = this.data.target_languages[index];
+    const selectedLanguage_show = this.data.target_languages_show[index];
     console.log(selectedLanguage);
     this.setData({
       targetLanguage: selectedLanguage,
@@ -241,35 +242,6 @@ Page({
       url: '/pages/history/history' // 跳转到历史页面的路径
     })
   },
-
-
-
-
-
-
-
-
-
-
-  test_111: function () {
-    wx.setClipboardData({
-      data: 'data',
-      success(res) {
-        wx.getClipboardData({
-          success(res) {
-            console.log(res.data) // data
-          }
-        })
-      }
-    })
-  },
-
-  test_out: function (e) {
-    this.setData({
-      outputContent: e.detail.value
-    }
-    )
-  }
 
 })
 

@@ -7,6 +7,31 @@
   align-items: center; /* 垂直居中 */
 }
 
+
+/*语言选择按钮*/
+.picker_language_selection {
+  width: 300rpx;
+  height:50rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center; /* 垂直居中 */
+  justify-content: space-between;
+  border: 3px solid #ddb68f; /* 添加边框 */
+  background-color: #f6f9fd;
+  border-radius: 4px; /* 添加圆角 */
+  padding: 8rpx 16rpx; /* 添加内边距 */
+  margin: 10rpx;
+}
+
+/** 文本的箭头 **/
+.arrow_png {
+  position: absolute;
+  width:100rpx;
+  top: 45rpx;
+  right: 324rpx;
+  z-index: 10; 
+}
+
 /*该格式会影响布局，考虑在其子区域内调整自定义格式*/
 /* .container {
   display: flex;
@@ -37,6 +62,28 @@
   border-radius: 10rpx;  /*边框圆角*/
 }
 
+.button-re-trans{
+  align-items: center;
+  justify-content: center;
+  background-color: #66ccff;
+  color: #ffffff;
+  border: 1mm ridge #00bbff;
+  border-radius: 10rpx;  /*边框圆角*/
+}
+
+/**输入**/
+.input_box {
+  display: flex;
+  margin-top: 15rpx;
+  margin-bottom: 10rpx;
+  /* margin-left: 10rpx;
+  margin-right: 10rpx; */
+  padding: 36rpx;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  width:720rpx;
+  height:300rpx;
+}
 
 /**输出**/
 .output_box {
