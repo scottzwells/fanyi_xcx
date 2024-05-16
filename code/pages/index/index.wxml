@@ -2,31 +2,35 @@
 <text class='header'>轻松翻译，从现在开始</text>
 
 <view class="main_screen">
-  <view class="picker_language_selection">
-    <picker mode="selector" range="{{source_languages_show}}" bindchange="selectSourceLanguage">
-      <view class="picker">
-        {{sourceLanguage_show}}
-      </view>
-    </picker>
+  <view class="picker_container">
+    <view class="picker_language_selection">
+      <picker mode="selector" range="{{source_languages_show}}" bindchange="selectSourceLanguage">
+        <view class="picker">
+          {{sourceLanguage_show}}
+        </view>
+      </picker>
 
-    <picker mode="selector" range="{{target_languages_show}}" bindchange="selectTargetLanguage">
-      <view class="picker">
-        {{targetLanguage_show}}
-      </view>
-    </picker>
+      <picker mode="selector" range="{{target_languages_show}}" bindchange="selectTargetLanguage">
+        <view class="picker">
+          {{targetLanguage_show}}
+        </view>
+      </picker>
+    </view>
+    <image src="../../img/Arrow.png" mode="widthFix" class="arrow_png"></image>
   </view>
 
-  <image src="../../img/clear.png" mode="widthFix" class="clear_input_box" bindtap="clearInput"></image>
-  <image src="../../img/copy.png" mode="widthFix" class="copy_output_box" bindtap="copyOutput"></image>
-  <image src="../../img/Arrow.png" mode="widthFix" class="arrow_png"></image>
-
-
-  <textarea class="input_box" placeholder="请输入文本" value="{{inputContent}}" bindinput="onInput" maxlength="-1"></textarea>
+  <view class="input_container">
+    <textarea class="input_box" placeholder="请输入文本" value="{{inputContent}}" bindinput="onInput" maxlength="-1"></textarea>
+    <image src="../../img/clear.png" mode="widthFix" class="clear_input_box" bindtap="clearInput"></image>
+  </view>
 
   <button class="translate_box" bindtap="translate_input" style="width:42%">点击翻译</button>
 
-  <textarea class="output_box" placeholder="这里显示翻译后的内容" value="{{outputContent}}"  maxlength="-1"></textarea>
-  
+  <view class="output_container">
+    <textarea class="output_box" placeholder="这里显示翻译后的内容" value="{{outputContent}}" maxlength="-1"></textarea>
+    <image src="../../img/copy.png" mode="widthFix" class="copy_output_box" bindtap="copyOutput"></image>
+  </view>
+
   <view class="button_row">
     <button bindtap="navigateToPicture" class="button_t">图片</button>
     <button bindtap="navigateToVoice" class="button_t">语音</button>
@@ -34,5 +38,3 @@
   </view>
 
 </view>
-
-

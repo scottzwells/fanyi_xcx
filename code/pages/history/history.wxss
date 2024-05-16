@@ -1,7 +1,11 @@
 /* pages/history/history.wxss */
 .history_title{
   color:#66CCFF;
-  margin:10rpx;
+  margin-left: 70rpx;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+  font-weight: bold;
+  color: #ee0000;
 }
 
 .clear_history_box{
@@ -13,6 +17,7 @@
 }
 
 .history-container {
+  margin-top: 30rpx;
   padding: 20rpx;
 }
 

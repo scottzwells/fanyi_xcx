@@ -1,15 +1,14 @@
 <!--pages/history/history.wxml-->
-<text class="history_title">翻译历史</text>
+<text class="history_title">翻译历史：</text>
 <image src="../../img/clear.png" mode="widthFix" class="clear_history_box" bindtap="clearHistory">清空</image>
 
 <view class="history-container">
   <view wx:for="{{historyList}}" wx:key="index" class="history-item">
-    <view class="one_record" >
+    <view class="one_record">
       <view class="source" bindtap="reloadHistory" data-item="{{item}}">{{item.src}}</view>
       <view class="translated" bindtap="reloadHistory" data-item="{{item}}">{{item.dst}}</view>
-      <view class="delete" bindtap="deleteHistory" data-key="{{index}}" >×</view>
+      <view class="delete" bindtap="deleteHistory" data-key="{{index}}">×</view>
     </view>
     <view class="sep_line" width="720rpx"></view>
   </view>
 </view>
-

@@ -236,13 +236,13 @@ tranPic: function ()
 },
 
 
-  // 获取输入框的内容
-  onInput: function (e) {
-    this.setData({
-      inputContent: e.detail.value
-    })
-    console.log("这是在函数onInput里面的输出：输入数据是", this.data.inputContent, "  source:", this.data.sourceLanguage, "  target:", this.data.targetLanguage);
-  },
+// 获取输入框的内容
+onInput: function (e) {
+  this.setData({
+    inputContent: e.detail.value
+  })
+  console.log("这是在函数onInput里面的输出：输入数据是", this.data.inputContent, "  source:", this.data.sourceLanguage, "  target:", this.data.targetLanguage);
+},
 
 tranText: function()
 {
@@ -261,6 +261,28 @@ tranText: function()
       this.setData({
         outputContent: res
       });
+    });
+  },
+
+  
+  // 清空输入框
+  clearInput: function () {
+    this.setData({
+      inputContent: '' // 清空输入框内容
+    });
+  },
+
+    // 复制到剪贴板
+  copyOutput: function () {
+    wx.setClipboardData({
+      data: this.data.outputContent, // 设置剪贴板的内容为输入框的文字
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
     });
   },
 

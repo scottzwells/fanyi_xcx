@@ -38,6 +38,8 @@ function translate_api (inputText, sourceLanguage, targetLanguage)
           dst+= target.dst+'\n'
         }
         console.log(src, "->", dst)
+        src = src.trim();  // 去掉最后一个换行符
+        dst = dst.trim();  // 去掉最后一个换行符
 
         // 更新历史记录
         let history = wx.getStorageSync('history') || []
@@ -55,6 +57,11 @@ function translate_api (inputText, sourceLanguage, targetLanguage)
       })
     }).catch(error => {
       console.error("翻译失败: ", error);
+      wx.showToast({
+        title: '翻译失败，请稍后重试',
+        icon: 'none',
+        duration: 2000  // 提示框显示时间，单位为毫秒
+      }); 
       reject("翻译失败，请稍后重试");
   });
 }
