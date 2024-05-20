@@ -15,7 +15,7 @@ Page({
     // 加载历史记录
     this.loadHistory();
   },
-  
+
   // 加载历史记录
   loadHistory: function () {
     // 从本地存储获取历史记录
@@ -81,24 +81,24 @@ Page({
   },
 
   // 清除历史记录
-  clearHistory:function(){
+  clearHistory: function () {
     wx.clearStorageSync();
-    wx.redirectTo({url:"/pages/history/history"});
+    wx.redirectTo({ url: "/pages/history/history" });
   },
 
   // 删除单条记录
-  deleteHistory:function(e){
+  deleteHistory: function (e) {
     console.log(e.currentTarget.dataset.key);
     let data = wx.getStorageSync('history');
-    data.splice(e.currentTarget.dataset.key,1);    
+    data.splice(e.currentTarget.dataset.key, 1);
     wx.setStorageSync('history', data);
-    wx.redirectTo({url:"/pages/history/history"});
+    wx.redirectTo({ url: "/pages/history/history" });
   },
 
   // 重载历史记录
-  reloadHistory:function(e){
+  reloadHistory: function (e) {
     console.log(e.currentTarget.dataset.item);
-    let url= `/pages/index/index?inputContent=${e.currentTarget.dataset.item.src}&outputContent=${e.currentTarget.dataset.item.dst}`;
+    let url = `/pages/index/index?inputContent=${e.currentTarget.dataset.item.src}&outputContent=${e.currentTarget.dataset.item.dst}`;
     wx.reLaunch({
       url
     })

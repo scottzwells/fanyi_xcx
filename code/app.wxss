@@ -30,11 +30,9 @@
   position: absolute;
   width: 100rpx;
   top: 50%; /* 相对于父级容器的垂直居中 */
-  right: 35%; /*负值使箭头左移*/
+  right: 35%;
   transform: translateY(-50%); /* 使箭头垂直居中 */
   z-index: 10;
-  /* top: 115rpx;
-  right: 324rpx; */
 }
 /*语言选择按钮*/
 .picker_language_selection {
@@ -99,12 +97,21 @@
   width:720rpx;
   height:300rpx;
 }
-
 /** 复制输出框 **/
 .copy_output_box {
   position: absolute;
   width:50rpx;
   top: 5%;
+  right: 1%;
+  cursor: pointer;
+  z-index: 10; 
+}
+/** 语音输出 **/
+.play_output_box {
+  position: absolute;
+  width:50rpx;
+  height: 50rpx;
+  top: 80%;
   right: 1%;
   cursor: pointer;
   z-index: 10; 

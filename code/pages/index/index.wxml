@@ -29,6 +29,7 @@
   <view class="output_container">
     <textarea class="output_box" placeholder="这里显示翻译后的内容" value="{{outputContent}}" maxlength="-1"></textarea>
     <image src="../../img/copy.png" mode="widthFix" class="copy_output_box" bindtap="copyOutput"></image>
+    <image src="../../img/Play.png" mode="aspectFill" class="play_output_box" bindtap="output2voice"></image>
   </view>
 
   <view class="button_row">

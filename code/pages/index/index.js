@@ -3,68 +3,104 @@
 import { translate } from '../../utils/baidu-translate-api.js';
 
 
-  // 调用翻译API并更新历史界面
-function translate_api (inputText, sourceLanguage, targetLanguage)
-  {
-    // 该函数是全局的翻译api函数
-    // 请在调用前判断是否是!inputText
-    // :param inputText: [传入]翻译的文本
-    // :param sourceLanguage: [传入]原语言，可选'auto'
-    // :param targetLanguage: [传入]目标语言
+// 调用翻译API并更新历史界面
+function translate_api(inputText, sourceLanguage, targetLanguage) {
+  // 该函数是全局的翻译api函数
+  // 请在调用前判断是否是!inputText
+  // :param inputText: [传入]翻译的文本
+  // :param sourceLanguage: [传入]原语言，可选'auto'
+  // :param targetLanguage: [传入]目标语言
 
-  
-    console.log("在函数translate_api里: inputText是：", inputText);
-    
-    // 情况1：没有输入，给出提示
-    // 注：该功能要求在外部实现。
-    // if (!inputText) {
-    //   return "请在输入框中输入有效的文本";
-    // };
 
-    // 情况2：有输入，翻译
-    return new Promise((resolve, reject) => {
-    console.log("from: " ,sourceLanguage, "to: ", targetLanguage)
+  console.log("在函数translate_api里: inputText是：", inputText);
+
+  // 情况1：没有输入，给出提示
+  // 注：该功能要求在外部实现。
+  // if (!inputText) {
+  //   return "请在输入框中输入有效的文本";
+  // };
+
+  // 情况2：有输入，翻译
+  return new Promise((resolve, reject) => {
+    console.log("from: ", sourceLanguage, "to: ", targetLanguage)
     translate(inputText, {
       from: sourceLanguage || 'auto',
       to: targetLanguage
-    }).then(res => 
-      {
-        let src =''  // 原文
-        for(let ori of res.trans_result){
-          src+= ori.src+'\n'
-        }
-        let dst=''  // 译文
-        for(let target of res.trans_result){
-          dst+= target.dst+'\n'
-        }
-        console.log(src, "->", dst)
-        src = src.trim();  // 去掉最后一个换行符
-        dst = dst.trim();  // 去掉最后一个换行符
+    }).then(res => {
+      let src = ''  // 原文
+      for (let ori of res.trans_result) {
+        src += ori.src + '\n'
+      }
+      let dst = ''  // 译文
+      for (let target of res.trans_result) {
+        dst += target.dst + '\n'
+      }
+      console.log(src, "->", dst)
+      src = src.trim();  // 去掉最后一个换行符
+      dst = dst.trim();  // 去掉最后一个换行符
 
-        // 更新历史记录
-        let history = wx.getStorageSync('history') || []
-        history.unshift({
-          dst: dst,
-          src: src,
-          from: res.from,
-          to: res.to
-        })
-        history.length = history.length > 10 ? 10 : history.length
-        wx.setStorageSync('history', history)
-
-        console.log("return的结果是：", dst);
-        resolve(dst);
+      // 更新历史记录
+      let history = wx.getStorageSync('history') || []
+      history.unshift({
+        dst: dst,
+        src: src,
+        from: res.from,
+        to: res.to
       })
-    }).catch(error => {
-      console.error("翻译失败: ", error);
-      wx.showToast({
-        title: '翻译失败，请稍后重试',
-        icon: 'none',
-        duration: 2000  // 提示框显示时间，单位为毫秒
-      }); 
-      reject("翻译失败，请稍后重试");
+      history.length = history.length > 10 ? 10 : history.length
+      wx.setStorageSync('history', history)
+
+      console.log("return的结果是：", dst);
+      resolve(dst);
+    })
+  }).catch(error => {
+    console.error("翻译失败: ", error);
+    wx.showToast({
+      title: '翻译失败，请稍后重试',
+      icon: 'none',
+      duration: 2000  // 提示框显示时间，单位为毫秒
+    });
+    reject("翻译失败，请稍后重试");
   });
 }
+
+
+// 调用语音合成API合成玉输出语音
+function Text2Voice(text, language)
+{
+  // 将languange语种的text变成语音，然后输出语音
+  // :param text: 文本
+  // :param lauguage: 文本对应的语言
+  const plugin = requirePlugin("WechatSI")
+  console.log("语音合成文本", text)
+  plugin.textToSpeech({
+      lang: language,
+      tts: true,
+      content: text,
+      success: function(res)
+      {
+          // res.filename 是语音文件的临时路径
+          console.log("语音文件路径：", res.filename);
+          // 播放语音
+          let audio = wx.createInnerAudioContext()
+          audio.src = res.filename // 设置音频的源
+          audio.play() // 播放音频
+          audio.onError((res) => {
+            this.setData({
+              outputContent: res.errMsg + res.errCode
+            })
+            console.log(res.errMsg)
+            console.log(res.errCode)
+          })
+      },
+      fail: function(res)
+      {
+          console.error("语音转换失败", res);
+      }
+  });
+}
+
+
 
 
 Page({
@@ -105,11 +141,11 @@ Page({
    */
   onLoad: function (options) {
     console.log('options inputContent:', options.inputContent)
-    console.log('options outputContent:',options.outputContent)
-    if (options.inputContent&&options.outputContent) {
+    console.log('options outputContent:', options.outputContent)
+    if (options.inputContent && options.outputContent) {
       this.setData({
         inputContent: options.inputContent,
-        outputContent:options.outputContent
+        outputContent: options.outputContent
       })
     }
   },
@@ -165,15 +201,14 @@ Page({
   },
 
   // 翻译输入框的内容
-  translate_input: function()
-  {
+  translate_input: function () {
     console.log("开始翻译")
 
     if (!this.data.inputContent) {
       this.setData({
         outputContent: "请输入正确的文本"
       });
-      return ;
+      return;
     };
 
     translate_api(this.data.inputContent, this.data.sourceLanguage, this.data.targetLanguage).then(result => {
@@ -185,7 +220,7 @@ Page({
     });
   },
 
-  
+
   // 复制到剪贴板
   copyOutput: function () {
     wx.setClipboardData({
@@ -227,6 +262,31 @@ Page({
     });
   },
 
+  output2voice: function(){
+    let language = ''  // 只能是zh_CN或en_US
+    console.log(this.data.targetLanguage)
+    if (this.data.targetLanguage == 'zh')
+    {
+      language = 'zh_CN'
+      // 将待翻译的文本this.data.outputContent(语种是language)转为语音
+      Text2Voice(this.data.outputContent, language);
+    }
+    else if (this.data.targetLanguage=='en')
+    {
+      language = 'en_US'
+      Text2Voice(this.data.outputContent, language);
+    }
+    else
+    {
+      wx.showToast({
+        title: '不支持的语种，语音合成只支持中文和英语',
+        icon: 'none',
+        duration: 2000  // 提示框显示时间，单位为毫秒
+      });
+    }
+    console.log("语音识别", language)
+  },
+
 
   // 导航到图片界面
   navigateToPicture: function () {
@@ -253,5 +313,6 @@ Page({
 })
 
 module.exports = {
-  translate_api: translate_api
+  translate_api: translate_api,
+  Text2Voice: Text2Voice
 }

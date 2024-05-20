@@ -40,6 +40,7 @@
     <view class="output_container">
       <textarea class="output_box" selectable="true" value="{{outputContent}}" placeholder="这里显示输出内容" maxlength="-1"></textarea>
       <image src="../../img/copy.png" mode="widthFix" class="copy_output_box" bindtap="copyOutput"></image>
+      <image src="../../img/Play.png" mode="aspectFill" class="play_output_box" bindtap="output2voice"></image>
     </view>
 
     <!-- <image src="{{OutputImageUrl}}" mode="aspectFit" class="image-container"/> -->

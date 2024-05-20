@@ -10,6 +10,12 @@
     "navigationBarTitleText": "翻译小程序",
     "navigationBarBackgroundColor": "#ffffff"
   },
+  "plugins": {
+      "WechatSI": {
+          "version": "0.3.5",
+          "provider": "wx069ba97219f66d99"
+      }
+  },
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
