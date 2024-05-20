@@ -71,6 +71,7 @@ function Text2Voice(text, language)
   // 将languange语种的text变成语音，然后输出语音
   // :param text: 文本
   // :param lauguage: 文本对应的语言
+  // 参考文档: https://fuwu.weixin.qq.com/service/detail/0000c6950745e87d6c5a143845c815
   const plugin = requirePlugin("WechatSI")
   console.log("语音合成文本", text)
   plugin.textToSpeech({

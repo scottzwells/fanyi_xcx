@@ -282,7 +282,7 @@ Page({
     });
   },
 
-  // 文本转语言
+  // 文本转语音
   output2voice: function(){
     let language = ''  // 只能是zh_CN或en_US
     console.log(this.data.targetLanguage)
