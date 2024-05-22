@@ -1,5 +1,6 @@
 // pages/voice/voice.js
 import {translate_api} from '../index/index.js'
+import {Text2Voice} from '../index/index.js'
 // const recorderManager = wx.getRecorderManager()
 
 Page({
@@ -330,6 +331,30 @@ Page({
     });
   },
 
+  // 文本转语言
+  output2voice: function(){
+    let language = ''  // 只能是zh_CN或en_US
+    console.log(this.data.targetLanguage)
+    if (this.data.targetLanguage == 'zh')
+    {
+      language = 'zh_CN'
+      Text2Voice(this.data.outputContent, language);
+    }
+    else if (this.data.targetLanguage=='en')
+    {
+      language = 'en_US'
+      Text2Voice(this.data.outputContent, language);
+    }
+    else
+    {
+      wx.showToast({
+        title: '不支持的语种，语音合成只支持中文和英语',
+        icon: 'none',
+        duration: 2000  // 提示框显示时间，单位为毫秒
+      });
+    }
+    console.log("语音识别", language)
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
