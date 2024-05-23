@@ -47,6 +47,8 @@
 .delete{
   font-size: 100%;
   font-weight: bold;
+  height:100%;
+  cursor: pointer;
 }
 
 .sep_line{
