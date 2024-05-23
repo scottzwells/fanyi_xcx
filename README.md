@@ -10,7 +10,7 @@
 </div>
 
 <h1>3.界面展示：</h1>
-<div align="center">
+<div align="center" style="background-color: gray">
   <img src="./images/主界面.png" width="24%" />
   <img src="./images/图片翻译界面.png" width="24%" />
   <img src="./images/语音翻译界面.png" width="24%" />
