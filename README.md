@@ -11,10 +11,10 @@
 
 <h1>3.界面展示：</h1>
 <div align="center">
-  <img src="./images/主界面.png" width="20%" />
-  <img src="./images/图片翻译界面.png" width="20%" />
-  <img src="./images/语音翻译界面.png" width="20%" />
-  <img src="./images/历史界面.png" width="20%" />
+  <img src="./images/主界面.png" width="24%" />
+  <img src="./images/图片翻译界面.png" width="24%" />
+  <img src="./images/语音翻译界面.png" width="24%" />
+  <img src="./images/历史界面.png" width="24%" />
 </div>
 
 <h1>4.项目功能：</h1>
