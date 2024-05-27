@@ -227,7 +227,7 @@ Page({
     return;
     }
     // 获取接口地址
-    const voice_url = "http://vop.baidu.com/server_api";
+    const voice_url = "https://vop.baidu.com/server_api";
     const token = "24.ac01b2ed7d141bee9092f99f09c087cf.2592000.1718281481.282335-70632248"; // 百度接口访问令牌
     const size = this.data.filesize;
     const pid = this.data.sourceLanguage_id;
