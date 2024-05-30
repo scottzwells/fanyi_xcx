@@ -6,7 +6,7 @@
 
 <h1>2.扫码体验：</h1>
 <div align="center">
-  <img src="./images/二维码.png" width="40%" />
+  <img src="./images/微信翻译小程序-小程序码.jpg" width="40%" />
 </div>
 
 <h1>3.界面展示：</h1>
